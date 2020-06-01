@@ -1,5 +1,7 @@
 package su.leff.translator
 
+import android.app.Activity
+import android.content.Context
 import android.widget.EditText
 import android.widget.TextView
 import su.leff.translator.exception.TextNotFoundException
@@ -34,6 +36,35 @@ object Translator {
      * "hi" - "Привет, Мир"
      */
     private val textMap = HashMap<String, String>()
+
+    /**
+     * This function loads a new map and updates all TextViews with their new texts
+     * @param stringMap - hashmap of new translations
+     * @param context - context (Activity) with which you can run on ui thread if you
+     * want to execute loading on background thread
+     * @exception TextNotFoundException is thrown when the text is not found in the hashmap
+     */
+    fun loadMap(stringMap: HashMap<String, String>, context: Context) {
+        // Clear old hashmap because it's immutable.
+        textMap.clear()
+
+        // Update old hashmap with new values.
+        for ((key, value) in stringMap) {
+            textMap[key] = value
+        }
+
+        (context as Activity).runOnUiThread {
+            // Update all TextViews.
+            for ((view, key) in textViewMap) {
+                view.text = getString(key)
+            }
+
+            // Update all EditTexts.
+            for ((view, key) in editTextViewMap) {
+                view.hint = getString(key)
+            }
+        }
+    }
 
     /**
      * This function loads a new map and updates all TextViews with their new texts
