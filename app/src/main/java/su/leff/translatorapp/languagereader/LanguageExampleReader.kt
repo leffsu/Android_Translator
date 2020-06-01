@@ -1,13 +1,12 @@
-package su.leff.translatorapp
-
-import android.content.Context
+package su.leff.translatorapp.languagereader
 
 /**
  * This is just an example of how your .ini or database reader could look like.
  *
  * The only purpose of this example is to show the format in which the strings must be loaded
  */
-class LanguageExampleReader(): LanguageReader {
+class LanguageExampleReader():
+    LanguageReader {
 
     private var languageId = 0
 

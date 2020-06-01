@@ -6,7 +6,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import su.leff.translator.Translator
 import su.leff.translator.Translator.key
-import su.leff.translatorapp.LanguageExampleReader
+import su.leff.translatorapp.languagereader.LanguageDatabaseReader
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
          */
 //        val languageReader = LanguageExampleReader()
 //        val languageReader = LanguageIniFileReader(this)
-        val languageReader = LanguageDatabaseReader(this)
+        val languageReader =
+            LanguageDatabaseReader(this)
 
         /*
         Bind TextViews and EditText keys to translator via extension. Just declare a key.

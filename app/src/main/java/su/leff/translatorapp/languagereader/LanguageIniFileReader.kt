@@ -1,13 +1,15 @@
-package su.leff.translatorapp
+package su.leff.translatorapp.languagereader
 
 import android.content.Context
+import su.leff.translatorapp.R
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.*
 import kotlin.collections.HashMap
 
-class LanguageIniFileReader(private val context: Context): LanguageReader {
+class LanguageIniFileReader(private val context: Context):
+    LanguageReader {
 
     private var languageId = 0
 

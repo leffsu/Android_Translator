@@ -1,4 +1,4 @@
-package su.leff.translatorapp
+package su.leff.translatorapp.languagereader
 
 import android.content.Context
 

@@ -1,14 +1,14 @@
-package su.leff.translatorapp
+package su.leff.translatorapp.languagereader
 
 import android.content.Context
-import androidx.room.Room
 import su.leff.database.AppDatabase
 import su.leff.database.entity.LanguageWithTranslations
 
 /**
  * Reads data from database
  */
-class LanguageDatabaseReader(private val context: Context) : LanguageReader {
+class LanguageDatabaseReader(private val context: Context) :
+    LanguageReader {
 
     private var languageId = 0
 
