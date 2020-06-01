@@ -1,21 +1,21 @@
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-publish {
-    def groupProjectID = 'su.leff.translator'
-    def artifactProjectID = 'translator'
-    def publishVersionID = '0.1.0'
-
-    userOrg = 'leffsu'
-    repoName = 'translator'
-    groupId = groupProjectID
-    artifactId = artifactProjectID
-    publishVersion = publishVersionID
-    desc = 'Android library easily handle change of translations'
-    website = 'https://github.com/leffsu/Android_Translator'
-}
+//publish {
+//    def groupProjectID = 'su.leff.translator'
+//    def artifactProjectID = 'translator'
+//    def publishVersionID = '0.1.0'
+//
+//    userOrg = 'leffsu'
+//    repoName = 'translator'
+//    groupId = groupProjectID
+//    artifactId = artifactProjectID
+//    publishVersion = publishVersionID
+//    desc = 'Android library easily handle change of translations'
+//    website = 'https://github.com/leffsu/Android_Translator'
+//}
 
 
 android {
