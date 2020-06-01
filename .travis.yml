@@ -32,6 +32,6 @@ script:
 - "./gradlew build check"
 deploy:
   provider: script
-  script: ./gradlew :clean :Android_Translator:assembleRelease :Android_Translator:bintrayUpload
+  script: ./gradlew :clean :translator:assembleRelease :translator:bintrayUpload
   skip_cleanup: true # to upload artifacts created during the build
   dry-run: false
