@@ -13,7 +13,7 @@ publishing {
 
     publications {
         Production(MavenPublication) {
-            artifact("$buildDir/outputs/aar/droidils-release.aar")
+            artifact("$buildDir/outputs/aar/translator-release.aar")
             groupId = groupProjectID
             artifactId = artifactProjectID
             version = publishVersionID
