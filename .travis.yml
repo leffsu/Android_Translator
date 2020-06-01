@@ -3,24 +3,35 @@ jdk: oraclejdk8
 dist: trusty
 env:
   global:
-    - ANDROID_API_LEVEL=29
-    - ANDROID_BUILD_TOOLS_VERSION=29.0.3
+  - ANDROID_API_LEVEL=29
+  - ANDROID_BUILD_TOOLS_VERSION=29.0.3
 android:
   licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
   components:
-    - tools
-    - platform-tools
-    # The BuildTools version used by your project
-    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
-    # The SDK version used to compile your project
-    - android-$ANDROID_API_LEVEL
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - addon-google_apis-google-$ANDROID_API_LEVEL
+  - tools
+  - platform-tools
+  - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+  - android-$ANDROID_API_LEVEL
+  - extra-google-google_play_services
+  - extra-google-m2repository
+  - extra-android-m2repository
+  - addon-google_apis-google-$ANDROID_API_LEVEL
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:      #Cache all dirs under .gradle folder
+    - $HOME/.gradle/daemon      #Cache daemon logs
+    - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
+    - $HOME/.gradle/wrapper     #Cache the gradle
 script:
-  - ./gradlew build check
+- "./gradlew build check"
+deploy:
+  provider: script
+  script: ./gradlew :clean :Android_Translator:assembleRelease :Android_Translator:bintrayUpload
+  skip_cleanup: true # to upload artifacts created during the build
+  dry-run: false
