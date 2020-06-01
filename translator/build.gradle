@@ -68,7 +68,7 @@ bintray {
     pkg {
         userOrg = 'leffsu'
         repo = 'translator'
-        name = project.name
+        name = 'translator'
         licenses = ['Apache-2.0']
         desc = 'Android library easily handle change of translations'
         websiteUrl = 'https://github.com/leffsu/Android_Translator'
