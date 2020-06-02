@@ -49,7 +49,7 @@ before_script:
   - ./gradlew --version
   - echo y |adb devices
 script:
-  - ./gradlew clean build uiAutomationTest -x test -x signArchives
+  - "./gradlew connectedAndroidTest"
 deploy:
   provider: script
   script: ./gradlew :clean :translator:assembleRelease :translator:bintrayUpload
