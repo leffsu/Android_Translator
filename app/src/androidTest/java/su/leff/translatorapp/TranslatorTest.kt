@@ -79,29 +79,21 @@ class TranslatorTest {
     private fun runCommonTest() {
         checkHelloText("Привет, Мир")
         checkEditHint("Подсказка")
-//        onView(withText("Тост")).inRoot(withDecorView(not(activity.window.decorView)))
-//            .check(matches(isDisplayed()))
         waitFor(SLEEP_TIME_IN_SECONDS)
         clickChangeLanguageButton()
 
         checkHelloText("Hello World")
         checkEditHint("Hint")
-//        onView(withText("Toast")).inRoot(withDecorView(not(activity.window.decorView)))
-//            .check(matches(isDisplayed()))
         waitFor(SLEEP_TIME_IN_SECONDS)
         clickChangeLanguageButton()
 
         checkHelloText("Hey värld")
         checkEditHint("ledtråd")
-//        onView(withText("rostat bröd")).inRoot(withDecorView(not(activity.window.decorView)))
-//            .check(matches(isDisplayed()))
         waitFor(SLEEP_TIME_IN_SECONDS)
         clickChangeLanguageButton()
 
         checkHelloText("Привет, Мир")
         checkEditHint("Подсказка")
-//        onView(withText("Тост")).inRoot(withDecorView(not(activity.window.decorView)))
-//            .check(matches(isDisplayed()))
         waitFor(SLEEP_TIME_IN_SECONDS)
     }
 
