@@ -7,9 +7,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import su.leff.translator.Translator
 import su.leff.translator.Translator.key
 import su.leff.translatorapp.languagereader.LanguageDatabaseReader
+import su.leff.translatorapp.languagereader.LanguageExampleReader
+import su.leff.translatorapp.languagereader.LanguageIniFileReader
+import su.leff.translatorapp.languagereader.LanguageReader
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var languageReader: LanguageReader
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -20,16 +24,28 @@ class MainActivity : AppCompatActivity() {
          */
         setContentView(R.layout.activity_main)
 
+
         /*
         Let's create a language reader. I provide you with few examples:
         1. LanguageExampleReader - it's just hardcoded in init.
         2. LanguageIniFileReader - it reads properties from .ini file.
         3. LanguageDatabaseReader - it reads data from database.
          */
-//        val languageReader = LanguageExampleReader()
-//        val languageReader = LanguageIniFileReader(this)
-        val languageReader =
-            LanguageDatabaseReader(this)
+
+        when (whatReaderToInit) {
+            0 -> {
+                languageReader =
+                    LanguageExampleReader()
+            }
+            1 -> {
+                languageReader =
+                    LanguageIniFileReader(this)
+            }
+            2 -> {
+                languageReader =
+                    LanguageDatabaseReader(this)
+            }
+        }
 
         /*
         Bind TextViews and EditText keys to translator via extension. Just declare a key.
@@ -45,16 +61,27 @@ class MainActivity : AppCompatActivity() {
         Translator.setFailSafe(false)
             .loadMap(languageReader.readNextLanguage())
 
+        Toast.makeText(this, Translator.getString("toast"), Toast.LENGTH_SHORT).show()
+
 
         btnClick.setOnClickListener {
             /*
             This is how you change the strings. TextView texts, EditText hints get updated,
             Toast shows a right string.
              */
-            Translator.setFailSafe(false)
+            Translator
                 .loadMap(languageReader.readNextLanguage())
 
             Toast.makeText(this, Translator.getString("toast"), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    companion object {
+        /*
+        0 - example reader
+        1 - ini file reader
+        2 - database reader
+         */
+        var whatReaderToInit = 0
     }
 }
