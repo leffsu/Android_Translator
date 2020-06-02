@@ -19,7 +19,8 @@ android:
   - extra-google-m2repository
   - extra-android-m2repository
   - addon-google_apis-google-$ANDROID_API_LEVEL
-  - sys-img-armeabi-v7a-android-22
+  - extra-android-support
+  - sys-img-armeabi-v7a-android-24
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -30,13 +31,25 @@ cache:
     - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
     - $HOME/.gradle/wrapper     #Cache the gradle
 before_script:
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a -c 100M
-  - emulator -avd test -no-audio -no-window &
+  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+  - nvm install 8
+  - node --version
+  - npm --version
+  - npm install -g appium
+  - echo y | android update sdk -a --no-ui --filter android-24
+  - echo y | android update sdk -a --no-ui --filter sys-img-armeabi-v7a-android-24
+  - android list targets | grep -E '^id:' | awk -F '"' '{$1=""; print $2}' # list all targets
+  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
+  - adb wait-for-device get-serialno
+  - sleep 100
+  - chmod +x gradlew
+  - ./gradlew --version
+  - echo y |adb devices
 script:
-- "./gradlew build check"
-- "./gradlew connectedAndroidTest"
+  - ./gradlew clean build uiAutomationTest -x test -x signArchives
 deploy:
   provider: script
   script: ./gradlew :clean :translator:assembleRelease :translator:bintrayUpload
