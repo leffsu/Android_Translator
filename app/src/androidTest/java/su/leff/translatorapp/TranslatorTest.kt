@@ -29,11 +29,11 @@ class TranslatorTest {
 
     private val SLEEP_TIME_IN_SECONDS = 3
 
-    @Before
-    fun setup() {
-        val intent = Intent(Intent.ACTION_PICK)
-        activity = rule.launchActivity(intent)
-    }
+//    @Before
+//    fun setup() {
+//        val intent = Intent(Intent.ACTION_PICK)
+//        activity = rule.launchActivity(intent)
+//    }
 
 //    /**
 //     * Checking Translator with example reader
