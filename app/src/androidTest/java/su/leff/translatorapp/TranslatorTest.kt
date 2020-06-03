@@ -35,35 +35,35 @@ class TranslatorTest {
         activity = rule.launchActivity(intent)
     }
 
-    /**
-     * Checking Translator with example reader
-     */
-    @Test
-    fun languageChangesWithExampleReader() {
-        MainActivity.whatReaderToInit = 0
-        assert(activity.languageReader is LanguageExampleReader)
-        runCommonTest()
-    }
-
-    /**
-     * Checking Translator with file ini reader
-     */
-    @Test
-    fun languageChangesWithFileIniReader() {
-        MainActivity.whatReaderToInit = 1
-        assert(activity.languageReader is LanguageIniFileReader)
-        runCommonTest()
-    }
-
-    /**
-     * Checking Translator with database reader
-     */
-    @Test
-    fun languageChangesWithDatabaseReader() {
-        MainActivity.whatReaderToInit = 2
-        assert(activity.languageReader is LanguageDatabaseReader)
-        runCommonTest()
-    }
+//    /**
+//     * Checking Translator with example reader
+//     */
+//    @Test
+//    fun languageChangesWithExampleReader() {
+//        MainActivity.whatReaderToInit = 0
+//        assert(activity.languageReader is LanguageExampleReader)
+//        runCommonTest()
+//    }
+//
+//    /**
+//     * Checking Translator with file ini reader
+//     */
+//    @Test
+//    fun languageChangesWithFileIniReader() {
+//        MainActivity.whatReaderToInit = 1
+//        assert(activity.languageReader is LanguageIniFileReader)
+//        runCommonTest()
+//    }
+//
+//    /**
+//     * Checking Translator with database reader
+//     */
+//    @Test
+//    fun languageChangesWithDatabaseReader() {
+//        MainActivity.whatReaderToInit = 2
+//        assert(activity.languageReader is LanguageDatabaseReader)
+//        runCommonTest()
+//    }
 
 
     /**
