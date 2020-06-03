@@ -23,7 +23,7 @@ object Translator {
 
     /**
      * This hashmap is done for saving a EditText - String Key relation
-     * Therefore, hashmap key is a TextView and value is a hint key
+     * Therefore, hashmap key is an EditText and value is a hint key
      */
     private val editTextViewMap = HashMap<EditText, String>()
 
@@ -33,7 +33,7 @@ object Translator {
      *
      * Example:
      * "hi" - "Hello World"
-     * "hi" - "Привет, Мир"
+     * "hi" - "Привет, Мир" (in another map)
      */
     private val textMap = HashMap<String, String>()
 
@@ -43,6 +43,7 @@ object Translator {
      * @param context - context (Activity) with which you can run on ui thread if you
      * want to execute loading on background thread
      * @exception TextNotFoundException is thrown when the text is not found in the hashmap
+     * @exception
      */
     fun loadMap(stringMap: HashMap<String, String>, context: Context) {
         // Clear old hashmap because it's immutable.

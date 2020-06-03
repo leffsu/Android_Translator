@@ -69,8 +69,11 @@ class MainActivity : AppCompatActivity() {
             This is how you change the strings. TextView texts, EditText hints get updated,
             Toast shows a right string.
              */
-            Translator
-                .loadMap(languageReader.readNextLanguage())
+
+            Thread().run {
+                Translator
+                    .loadMap(languageReader.readNextLanguage())
+            }
 
             Toast.makeText(this, Translator.getString("toast"), Toast.LENGTH_SHORT).show()
         }
