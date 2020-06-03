@@ -1,33 +1,33 @@
 package su.leff.translatorapp
 
 
-import android.content.Intent
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
-import org.hamcrest.Matchers.not
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import su.leff.translatorapp.languagereader.LanguageDatabaseReader
-import su.leff.translatorapp.languagereader.LanguageExampleReader
-import su.leff.translatorapp.languagereader.LanguageIniFileReader
 
 
 @RunWith(AndroidJUnit4::class)
+@LargeTest
 class TranslatorTest {
 
     @get:Rule
-    val rule = ActivityTestRule(MainActivity::class.java, false, true)
+    val rule = ActivityTestRule(MainActivity::class.java)
 
     lateinit var activity: MainActivity
 
     private val SLEEP_TIME_IN_SECONDS = 3
+
+    @Test
+    fun test() {
+        assert(true)
+    }
 
 //    @Before
 //    fun setup() {
