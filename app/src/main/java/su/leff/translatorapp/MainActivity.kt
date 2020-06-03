@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import su.leff.translator.Translator
+import su.leff.translator.Translator.hintKey
 import su.leff.translator.Translator.key
+import su.leff.translator.Translator.keyIfNotChanged
 import su.leff.translatorapp.languagereader.LanguageDatabaseReader
 import su.leff.translatorapp.languagereader.LanguageExampleReader
 import su.leff.translatorapp.languagereader.LanguageIniFileReader
@@ -14,6 +16,8 @@ import su.leff.translatorapp.languagereader.LanguageReader
 class MainActivity : AppCompatActivity() {
 
     lateinit var languageReader: LanguageReader
+
+    val translator = Translator
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -52,6 +56,8 @@ class MainActivity : AppCompatActivity() {
          */
         txvHello.key = "helloworld"
         edtTest.key = "hint"
+        edtTestHint.hintKey = "hint"
+        edtTestChanged.keyIfNotChanged = "hint"
 
         /*
         This is how you initially load the strings. You can use it in the Application class.
@@ -62,7 +68,6 @@ class MainActivity : AppCompatActivity() {
             .loadMap(languageReader.readNextLanguage())
 
         Toast.makeText(this, Translator.getString("toast"), Toast.LENGTH_SHORT).show()
-
 
         btnClick.setOnClickListener {
             /*
