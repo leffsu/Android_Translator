@@ -72,7 +72,7 @@ Compatibility
 Getting Help
 ------------
 To report a specific problem or feature request, open a new issue on Github. For questions, suggestions, or
-anything else, email me leff@leff.su or ping me in Telegram t.me/leffsu.
+anything else, email me at leff@leff.su or ping me on Telegram t.me/leffsu.
 
 Thanks
 ------
