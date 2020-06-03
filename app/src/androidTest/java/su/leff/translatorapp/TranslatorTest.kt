@@ -77,6 +77,8 @@ class TranslatorTest {
      * Clicking the button to change the language.
      */
     private fun runCommonTest() {
+        waitFor(SLEEP_TIME_IN_SECONDS)
+
         checkHelloText("Привет, Мир")
         checkEditHint("Подсказка")
         waitFor(SLEEP_TIME_IN_SECONDS)
