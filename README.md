@@ -58,3 +58,30 @@ editText.key = "key"
 // To get a string from Translator:
 Translator.getString("key")
 ```
+
+Status
+------
+Translator is still in alpha.
+
+Compatibility
+-------------
+
+ * **Minimum Android SDK**: Translator requires a minimum API level of 19.
+ * **Compile Android SDK**: Translator requires you to compile against API 29 or later. Other versions are not tested or supported.
+ 
+Getting Help
+------------
+To report a specific problem or feature request, open a new issue on Github. For questions, suggestions, or
+anything else, email me leff@leff.su or ping me in Telegram t.me/leffsu.
+
+Thanks
+------
+* **Roman Uvarov https://github.com/Roman1610** for support in my darkest times.
+
+Author
+------
+Lev Nazarov - @leffsu on GitHub, @leffsu on Telegram
+
+License
+-------
+Apache 2.0
