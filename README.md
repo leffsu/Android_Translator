@@ -30,3 +30,31 @@ Or Maven:
   <type>pom</type>
 </dependency>
 ```
+
+How do I use Translator?
+-------------------
+
+Examples of different readers are located in sample.
+
+Java is not supported but you can create your own wrapper around Translator to work in Java.
+
+Simple use cases will look something like this:
+
+```Kotlin
+// First of all, you need to supply Translator with a HashMap<Key, Text>:
+
+Translator.loadMap(hashmap)
+
+// If you don't want your app to crash whenever the key is not found, set it up like this:
+
+Translator.setFailSafe(false).loadMap(hashmap)
+
+// To use it with a TextView (it will work as txv.setText(text):
+textView.key = "key"
+
+// To use it with an EditText (it will work as txv.setHint(text):
+editText.key = "key"
+
+// To get a string from Translator:
+Translator.getString("key")
+```
