@@ -85,3 +85,9 @@ Lev Nazarov - @leffsu on GitHub, @leffsu on Telegram
 License
 -------
 Apache 2.0
+
+TODO
+-------
+* Testing in real projects.
+* Java wrapper.
+* Picture translator.
