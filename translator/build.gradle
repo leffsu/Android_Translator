@@ -4,12 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
+def publishVersionID = '0.2.1'
 
 publishing {
 
     def groupProjectID = 'su.leff.translator'
     def artifactProjectID = 'translator'
-    def publishVersionID = '0.2.0'
 
     publications {
         Production(MavenPublication) {
@@ -76,8 +76,8 @@ bintray {
         vcsUrl = 'https://github.com/leffsu/Android_Translator.git'
 
         version {
-            name = '0.2.0' //Bintray logical version name
-            vcsTag = '0.2.0'
+            name = publishVersionID //Bintray logical version name
+            vcsTag = publishVersionID
         }
     }
 
