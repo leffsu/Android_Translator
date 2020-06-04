@@ -68,7 +68,7 @@ class TranslatorTest {
      */
     @Test
     fun checkEditTextsThatWerentChanged() {
-        waitFor(40)
+        waitFor(SLEEP_TIME_IN_SECONDS_BEFORE_TEST)
         // Let's write some text into the field
         onView(withId(R.id.edtTestChanged))
             .perform(typeText(SOME_TEXT))
@@ -173,7 +173,7 @@ class TranslatorTest {
         private const val toastKey = "toast"
 
         private const val SLEEP_TIME_IN_SECONDS = 3
-        private const val SLEEP_TIME_IN_SECONDS_BEFORE_TEST = 10
+        private const val SLEEP_TIME_IN_SECONDS_BEFORE_TEST = 20
 
         private const val SOME_TEXT = "test"
     }
