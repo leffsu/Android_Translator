@@ -173,7 +173,7 @@ class TranslatorTest {
         private const val toastKey = "toast"
 
         private const val SLEEP_TIME_IN_SECONDS = 3
-        private const val SLEEP_TIME_IN_SECONDS_BEFORE_TEST = 20
+        private const val SLEEP_TIME_IN_SECONDS_BEFORE_TEST = 30
 
         private const val SOME_TEXT = "test"
     }
