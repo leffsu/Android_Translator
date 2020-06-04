@@ -68,7 +68,7 @@ class TranslatorTest {
      */
     @Test
     fun checkEditTextsThatWerentChanged() {
-        waitFor(SLEEP_TIME_IN_SECONDS_BEFORE_TEST)
+        waitFor(40)
         // Let's write some text into the field
         onView(withId(R.id.edtTestChanged))
             .perform(typeText(SOME_TEXT))
