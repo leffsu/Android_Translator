@@ -1,15 +1,15 @@
 package su.leff.translatorapp
 
-
 import android.content.Intent
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
-import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -18,16 +18,14 @@ import su.leff.translatorapp.languagereader.LanguageDatabaseReader
 import su.leff.translatorapp.languagereader.LanguageExampleReader
 import su.leff.translatorapp.languagereader.LanguageIniFileReader
 
-
 @RunWith(AndroidJUnit4::class)
+@LargeTest
 class TranslatorTest {
 
     @get:Rule
-    val rule = ActivityTestRule(MainActivity::class.java, false, true)
+    val rule = ActivityTestRule(MainActivity::class.java)
 
     lateinit var activity: MainActivity
-
-    private val SLEEP_TIME_IN_SECONDS = 3
 
     @Before
     fun setup() {
@@ -65,37 +63,60 @@ class TranslatorTest {
         runCommonTest()
     }
 
+    /**
+     * This test checks if EditText's text should not be replaced if it was somehow changed
+     */
+    @Test
+    fun checkEditTextsThatWerentChanged() {
+        waitFor(SLEEP_TIME_IN_SECONDS_BEFORE_TEST)
+        // Let's write some text into the field
+        onView(withId(R.id.edtTestChanged))
+            .perform(typeText(SOME_TEXT))
+        Espresso.closeSoftKeyboard()
+        // Change the language
+        clickChangeLanguageButton()
+        // Text must not be changed
+        onView(withId(R.id.edtTestChanged))
+            .check(matches(withText(SOME_TEXT)))
+    }
 
     /**
-     * We check txvHello's test, edtTest's hint and the toast's contents.
-     * In order to check if toast's message is correct, we're looking for the toast with
-     * specific message. If it's displayed - it's ok.
-     *
-     * Then we're waiting for @see SLEEP_TIME_IN_SECONDS so that toasts had time to disappear.
-     * Getting an error otherwise.
+     * We check TextView's text, EditText's hint and EditText's text.
      *
      * Clicking the button to change the language.
      */
     private fun runCommonTest() {
-        waitFor(SLEEP_TIME_IN_SECONDS)
-
-        checkHelloText("Привет, Мир")
-        checkEditHint("Подсказка")
-        waitFor(SLEEP_TIME_IN_SECONDS)
+        waitFor(SLEEP_TIME_IN_SECONDS_BEFORE_TEST)
+        checkRussianText()
         clickChangeLanguageButton()
-
-        checkHelloText("Hello World")
-        checkEditHint("Hint")
-        waitFor(SLEEP_TIME_IN_SECONDS)
+        checkEnglishText()
         clickChangeLanguageButton()
-
-        checkHelloText("Hey värld")
-        checkEditHint("ledtråd")
-        waitFor(SLEEP_TIME_IN_SECONDS)
+        checkSwedishText()
         clickChangeLanguageButton()
+        checkRussianText()
+    }
 
-        checkHelloText("Привет, Мир")
-        checkEditHint("Подсказка")
+    private fun checkRussianText() {
+        checkTextView(russianTextViewText)
+        checkEditTextText(russianEditTextText)
+        checkEditTextHint(russianEditTextText)
+        checkText(russianTextViewText, russianEditTextText, russianToastText)
+        waitFor(SLEEP_TIME_IN_SECONDS)
+    }
+
+    private fun checkEnglishText() {
+        checkTextView(englishTextViewText)
+        checkEditTextText(englishEditTextText)
+        checkEditTextHint(englishEditTextText)
+        checkText(englishTextViewText, englishEditTextText, englishToastText)
+        waitFor(SLEEP_TIME_IN_SECONDS)
+    }
+
+    private fun checkSwedishText() {
+        checkTextView(swedishTextViewText)
+        checkEditTextText(swedishEditTextText)
+        checkEditTextHint(swedishEditTextText)
+        checkText(swedishTextViewText, swedishEditTextText, swedishToastText)
         waitFor(SLEEP_TIME_IN_SECONDS)
     }
 
@@ -108,13 +129,52 @@ class TranslatorTest {
             .perform(click())
     }
 
-    private fun checkHelloText(string: String) {
+    private fun checkTextView(string: String) {
         onView(withId(R.id.txvHello))
             .check(matches(withText(string)))
     }
 
-    private fun checkEditHint(string: String) {
+    private fun checkEditTextText(string: String) {
         onView(withId(R.id.edtTest))
+            .check(matches(withText(string)))
+    }
+
+    private fun checkEditTextHint(string: String) {
+        onView(withId(R.id.edtTestHint))
             .check(matches(withHint(string)))
+    }
+
+    private fun checkText(
+        textViewString: String,
+        editTextString: String,
+        toastString: String
+    ) {
+        assert(activity.translator.getString(textViewKey) == textViewString)
+        assert(activity.translator.getString(editTextKey) == editTextString)
+        assert(activity.translator.getString(toastKey) == toastString)
+    }
+
+    companion object {
+
+        private const val russianTextViewText = "Привет, Мир"
+        private const val russianEditTextText = "Подсказка"
+        private const val russianToastText = "Тост"
+
+        private const val englishTextViewText = "Hello World"
+        private const val englishEditTextText = "Hint"
+        private const val englishToastText = "Toast"
+
+        private const val swedishTextViewText = "Hey värld"
+        private const val swedishEditTextText = "ledtråd"
+        private const val swedishToastText = "rostat bröd"
+
+        private const val textViewKey = "helloworld"
+        private const val editTextKey = "hint"
+        private const val toastKey = "toast"
+
+        private const val SLEEP_TIME_IN_SECONDS = 3
+        private const val SLEEP_TIME_IN_SECONDS_BEFORE_TEST = 20
+
+        private const val SOME_TEXT = "test"
     }
 }
