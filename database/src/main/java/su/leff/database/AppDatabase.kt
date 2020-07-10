@@ -32,15 +32,18 @@ abstract class AppDatabase : RoomDatabase() {
 
                 db.translationDao().insertAll(Translation(0, 0, "helloworld", "Привет, мир"))
                 db.translationDao().insertAll(Translation(1, 0, "hint", "Подсказка"))
-                db.translationDao().insertAll(Translation(2, 0, "toast", "Привет, Тост"))
+                db.translationDao().insertAll(Translation(2, 0, "toast", "Тост"))
+                db.translationDao().insertAll(Translation(3, 0, "second_activity", "Второе активити"))
 
-                db.translationDao().insertAll(Translation(3, 1, "helloworld", "Hello World"))
-                db.translationDao().insertAll(Translation(4, 1, "hint", "Hint"))
-                db.translationDao().insertAll(Translation(5, 1, "toast", "Toast"))
+                db.translationDao().insertAll(Translation(4, 1, "helloworld", "Hello World"))
+                db.translationDao().insertAll(Translation(5, 1, "hint", "Hint"))
+                db.translationDao().insertAll(Translation(6, 1, "toast", "Toast"))
+                db.translationDao().insertAll(Translation(7, 1, "second_activity", "Second Activity"))
 
-                db.translationDao().insertAll(Translation(6, 2, "helloworld", "Hey värld"))
-                db.translationDao().insertAll(Translation(7, 2, "hint", "ledtråd"))
-                db.translationDao().insertAll(Translation(8, 2, "toast", "rostat bröd"))
+                db.translationDao().insertAll(Translation(8, 2, "helloworld", "Hey värld"))
+                db.translationDao().insertAll(Translation(9, 2, "hint", "ledtråd"))
+                db.translationDao().insertAll(Translation(10, 2, "toast", "rostat bröd"))
+                db.translationDao().insertAll(Translation(11, 2, "second_activity", "Andra skärmen"))
             }
             return db
         }

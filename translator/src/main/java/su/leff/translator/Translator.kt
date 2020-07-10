@@ -172,6 +172,7 @@ object Translator {
         set(value) {
             value?.let { string ->
                 textViewMap[this] = string
+                text = textMap[string]
             }
         }
 
@@ -190,6 +191,7 @@ object Translator {
         set(value) {
             value?.let { string ->
                 editTextViewMap[this] = string
+                setText(textMap[string])
             }
         }
 
@@ -208,6 +210,9 @@ object Translator {
         set(value) {
             value?.let { string ->
                 editTextViewMapIfNotChanged[this] = string
+                if (text.toString() == textMapPreviousConfiguration[string]) {
+                    setText(textMap[string])
+                }
             }
         }
 
@@ -226,6 +231,7 @@ object Translator {
         set(value) {
             value?.let { string ->
                 editTextViewHintMap[this] = string
+                hint = textMap[string]
             }
         }
 

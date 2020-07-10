@@ -3,6 +3,7 @@ package su.leff.translatorapp
 import android.content.Intent
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -33,13 +34,30 @@ class TranslatorTest {
         activity = rule.launchActivity(intent)
     }
 
+    @Test
+    fun languageChangesOnTheFirstScreenWhenChangedOnTheSecondScreen() {
+        waitFor(SLEEP_TIME_IN_SECONDS_BEFORE_TEST)
+        checkRussianText()
+        clickChangeLanguageButton()
+        checkEnglishText()
+        clickOnSecondActivityButton()
+        onView(withId(R.id.txvHello))
+            .check(matches(withText(englishTextViewText)))
+        onView(withId(R.id.btnChangeLanguage))
+            .perform(click())
+        onView(withId(R.id.txvHello))
+            .check(matches(withText(swedishTextViewText)))
+        pressBack()
+        checkSwedishText()
+    }
+
     /**
      * Checking Translator with example reader
      */
     @Test
     fun languageChangesWithExampleReader() {
-        MainActivity.whatReaderToInit = 0
-        assert(activity.languageReader is LanguageExampleReader)
+        LanguageChanger.whatReaderToInit = 0
+        assert(LanguageChanger.languageReader is LanguageExampleReader)
         runCommonTest()
     }
 
@@ -48,8 +66,8 @@ class TranslatorTest {
      */
     @Test
     fun languageChangesWithFileIniReader() {
-        MainActivity.whatReaderToInit = 1
-        assert(activity.languageReader is LanguageIniFileReader)
+        LanguageChanger.whatReaderToInit = 1
+        assert(LanguageChanger.languageReader is LanguageIniFileReader)
         runCommonTest()
     }
 
@@ -58,8 +76,8 @@ class TranslatorTest {
      */
     @Test
     fun languageChangesWithDatabaseReader() {
-        MainActivity.whatReaderToInit = 2
-        assert(activity.languageReader is LanguageDatabaseReader)
+        LanguageChanger.whatReaderToInit = 2
+        assert(LanguageChanger.languageReader is LanguageDatabaseReader)
         runCommonTest()
     }
 
@@ -144,6 +162,11 @@ class TranslatorTest {
             .check(matches(withHint(string)))
     }
 
+    private fun clickOnSecondActivityButton(){
+        onView(withId(R.id.btnSecondActivity))
+            .perform(click())
+    }
+
     private fun checkText(
         textViewString: String,
         editTextString: String,
@@ -178,3 +201,7 @@ class TranslatorTest {
         private const val SOME_TEXT = "test"
     }
 }
+
+/*
+APPCENTER_AUTH=d610b2beeeb8a6577473a24db247e63189e0b005 appcenter test run espresso --app "App-Center-Test-Cloud/1234-Andriod-test" --devices "App-Center-Test-Cloud/android-q" --app-path /Users/leff/Documents/repo/Android_Translator/app/build/outputs/apk/debug/app-debug.apk --test-series "master" --locale "en_US" --build-dir /Users/leff/Documents/repo/Android_Translator/app/build/outputs/apk/androidTest/debug
+ */

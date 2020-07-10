@@ -18,14 +18,17 @@ class LanguageExampleReader():
         russianHashMap["helloworld"] = "Привет, Мир"
         russianHashMap["hint"] = "Подсказка"
         russianHashMap["toast"] = "Тост"
+        russianHashMap["second_activity"] = "Второе активити"
 
         englishHashMap["helloworld"] = "Hello World"
         englishHashMap["hint"] = "Hint"
         englishHashMap["toast"] = "Toast"
+        englishHashMap["second_activity"] = "Second Activity"
 
         swedishHashMap["helloworld"] = "Hey värld"
         swedishHashMap["hint"] = "ledtråd"
         swedishHashMap["toast"] = "rostat bröd"
+        swedishHashMap["second_activity"] = "Andra skärmen"
     }
 
     override fun readNextLanguage(): HashMap<String, String> {
