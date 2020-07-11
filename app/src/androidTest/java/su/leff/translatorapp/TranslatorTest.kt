@@ -188,8 +188,8 @@ class TranslatorTest {
         private const val englishToastText = "Toast"
 
         private const val swedishTextViewText = "Hey värld"
-        private const val swedishEditTextText = "ledtråd"
-        private const val swedishToastText = "rostat bröd"
+        private const val swedishEditTextText = "Ledtråd"
+        private const val swedishToastText = "Rostat bröd"
 
         private const val textViewKey = "helloworld"
         private const val editTextKey = "hint"

@@ -26,8 +26,8 @@ class LanguageExampleReader():
         englishHashMap["second_activity"] = "Second Activity"
 
         swedishHashMap["helloworld"] = "Hey värld"
-        swedishHashMap["hint"] = "ledtråd"
-        swedishHashMap["toast"] = "rostat bröd"
+        swedishHashMap["hint"] = "Ledtråd"
+        swedishHashMap["toast"] = "Rostat bröd"
         swedishHashMap["second_activity"] = "Andra skärmen"
     }
 
